@@ -1,5 +1,7 @@
 # GitHub Actions Fundamentals
 
+This is the GitHub repository for the GitHub Actions Fundamentals workshop. The workshop is designed to be a hands-on experience where you will learn how to use GitHub Actions to automate your workflows and CI/CD pipelines.
+
 Repo for the `GitHub Actions Fundamentals` training.
 
 ## 👉 Objectives
