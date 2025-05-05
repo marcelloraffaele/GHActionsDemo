@@ -1,0 +1,26 @@
+# This workflow creates a zip package of the code and uploads it as an artifact.
+name: 4 Create Package
+
+on:
+  workflow_dispatch: # Allows manual triggering
+
+# Add explicit permissions
+permissions:
+  contents: read     # Needed for checkout
+  actions: write    # Needed for uploading artifacts
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create zip archive
+        run: zip release.zip . -r # Zip all files recursively
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-package # Name of the artifact
+          path: release.zip # Path to the file to upload
