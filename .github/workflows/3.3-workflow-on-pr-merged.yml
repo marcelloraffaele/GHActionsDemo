@@ -18,7 +18,13 @@ jobs:
       - name: Run a one-line script
         run: echo "Pull Request was merged!"
 
-      - name: Run a multi-line script
+      - name: Count files
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          echo "Counting files in the repository..."
+          # Use find for Linux/macOS, Get-ChildItem for Windows
+          if [[ "$RUNNER_OS" == "Windows" ]]; then
+            count=$(Get-ChildItem -Recurse -File | Measure-Object | Select-Object -ExpandProperty Count)
+          else
+            count=$(find . -type f | wc -l)
+          fi
+          echo "Total files: $count"
