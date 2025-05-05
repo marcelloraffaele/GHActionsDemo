@@ -1,0 +1,27 @@
+# This workflow counts the number of files in the repository when a pull request is opened or updated.
+name: 3.1 PR File Counter
+
+on:
+  pull_request:
+    branches:
+      - main # Specify the target branch here
+
+jobs:
+  count_files:
+    runs-on: ubuntu-latest # Or windows-latest, macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Count files
+        id: count
+        run: |
+          echo "Counting files in the repository..."
+          # Use find for Linux/macOS, Get-ChildItem for Windows
+          if [[ "$RUNNER_OS" == "Windows" ]]; then
+            count=$(Get-ChildItem -Recurse -File | Measure-Object | Select-Object -ExpandProperty Count)
+          else
+            count=$(find . -type f | wc -l)
+          fi
+          echo "Total files: $count"
+          echo "count=$count" >> $GITHUB_OUTPUT # Make count available as an output if needed

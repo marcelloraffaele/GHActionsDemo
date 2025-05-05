@@ -1,0 +1,24 @@
+name: 3.3 PR Merged Workflow
+
+on:
+  pull_request:
+    types: [closed] # Trigger when a PR is closed
+    branches:
+      - main # Only trigger for PRs targeting the main branch
+
+jobs:
+  build:
+    # Only run this job if the PR was merged
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run a one-line script
+        run: echo "Pull Request was merged!"
+
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.

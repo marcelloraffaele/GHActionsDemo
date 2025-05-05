@@ -1,0 +1,24 @@
+name: 3.2 PR Approved
+
+on:
+  pull_request_review:
+    types: [submitted] # Trigger when a review is submitted
+
+jobs:
+  check_approval:
+    runs-on: ubuntu-latest
+    # Only run this job if the review state is 'approved'
+    if: github.event.review.state == 'approved'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          # Checkout the specific commit associated with the pull request head
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Log Approval
+        run: |
+          echo "Pull Request #${{ github.event.pull_request.number }} was approved by ${{ github.event.review.user.login }}."
+          echo "Running subsequent steps..."
+      # Add other steps here that should run after approval
+      # For example: build, test, deploy, etc.
