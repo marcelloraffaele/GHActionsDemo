@@ -1,8 +1,8 @@
 name: 0.GitHub Actions Demo
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
+#  push:
+#    branches: [main]
 jobs:
   Build:
     runs-on: ubuntu-latest

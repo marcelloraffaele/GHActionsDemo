@@ -1,6 +1,6 @@
 # This workflow demonstrates how to use the `workflow_run` event to trigger a job approval process.
 # It consists of three jobs: `job-dev`, `job-preprod`, and `job-prod`.
-name: 1.Job-approval
+name: 2.Job-approval
 on:
   workflow_dispatch
 
