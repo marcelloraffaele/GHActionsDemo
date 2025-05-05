@@ -16,8 +16,8 @@ jobs:
           echo "This is step 2 of job dev"
       - name: step 2
         run: |          
-          echo "TAG: ${{ env.TAG }}"
-          echo "ENV_NAME: ${{ env.ENV_NAME }}"
+          echo "TAG: ${{ vars.TAG }}"
+          echo "ENV_NAME: ${{ vars.ENV_NAME }}"
 
   job-preprod:
     runs-on: ubuntu-latest
@@ -28,8 +28,8 @@ jobs:
         run: echo "This is job-preprod, which depends on job-dev"
       - name: step 2
         run: |          
-          echo "TAG: ${{ env.TAG }}"
-          echo "ENV_NAME: ${{ env.ENV_NAME }}"
+          echo "TAG: ${{ vars.TAG }}"
+          echo "ENV_NAME: ${{ vars.ENV_NAME }}"
   
   job-prod:
     runs-on: ubuntu-latest
@@ -40,5 +40,5 @@ jobs:
         run: echo "This is job-prod, which depends on job-preprod"
       - name: step 2
         run: |          
-          echo "TAG: ${{ env.TAG }}"
-          echo "ENV_NAME: ${{ env.ENV_NAME }}"
+          echo "TAG: ${{ vars.TAG }}"
+          echo "ENV_NAME: ${{ vars.ENV_NAME }}"
