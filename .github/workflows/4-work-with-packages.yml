@@ -1,4 +1,5 @@
-# This workflow creates a zip package of the code and uploads it as an artifact.
+# This workflow creates a zip package of the code and uploads it as an (workflow) artifact.
+# **Workflow Artifacts** are temporary files that are only stored for a limited time (usually 90 days) and are only accessible from the workflow run page
 name: 4 Create Package
 
 on:
