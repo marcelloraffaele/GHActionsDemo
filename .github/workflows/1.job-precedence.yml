@@ -1,4 +1,4 @@
-name: Job-precedence
+name: 1.Job-precedence
 on:
   workflow_dispatch
 
@@ -7,7 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Job 1
-        run: echo "This is job 1"
+        run: |
+          echo "🎉 The job was triggered by event: ${{ github.event_name }}"
+          echo "🎉 The job was triggered by actor: ${{ github.actor }}"
+          echo "This is job 1"
 
   job2:
     runs-on: ubuntu-latest
