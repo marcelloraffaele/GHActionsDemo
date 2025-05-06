@@ -2,6 +2,9 @@ name: 2.1 Manual approver
 on:
   workflow_dispatch
 
+permissions:
+  issues: write
+
 jobs:
   job-dev:
     runs-on: ubuntu-latest
