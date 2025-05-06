@@ -1,0 +1,46 @@
+# This workflow builds and tests Java projects using Maven.
+name: Java Build and Test
+
+on:
+  push:
+    branches:
+      - main
+      - 'release*'
+  pull_request:
+    branches:
+      - main
+      - 'release*'
+  issues:
+    types: [opened, reopened, edited]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Check for Java files
+      id: check-java
+      run: |
+        if find . -name "*.java" -type f -print -quit | grep -q .; then
+          echo "java_files_found=true" >> $GITHUB_OUTPUT
+        else
+          echo "java_files_found=false" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Set up JDK 17
+      if: steps.check-java.outputs.java_files_found == 'true'
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Build with Maven
+      if: steps.check-java.outputs.java_files_found == 'true'
+      run: mvn -B compile
+
+    - name: Run Tests
+      if: steps.check-java.outputs.java_files_found == 'true'
+      run: mvn -B test
