@@ -1,3 +1,4 @@
+# This workflow builds and tests Java projects using Maven.
 name: Java Build and Test
 
 on:
