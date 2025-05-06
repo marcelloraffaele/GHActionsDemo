@@ -1,0 +1,16 @@
+name: demo workflwow
+on: [ workflow_dispatch ]
+
+jobs:
+  job1:
+    name: Job1 abcd
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Say hello"
+        run: echo "Hello!"
+  job2:
+    name: Job2 efg
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Say hello"
+        run: echo "Hello!"
